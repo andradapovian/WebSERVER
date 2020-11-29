@@ -1,58 +1,75 @@
 package config;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import exceptions.InvalidPathException;
+import file.PropertiesFileReadWrite;
+
+
 public class Config {
-	private final String DEFAULT_CONFIG_FILE="WebServerConfig.ini";
+	private PropertiesFileReadWrite rw;
+	private String rootDir=null;
+	private String port=null;
+	private String state=null;
 	
-	public Config(String configFileName) {
+	private static Config config_instance = null; 
+	
+	
+	private Config() throws FileNotFoundException {
+		rw = new PropertiesFileReadWrite();
+	}
+	
+	public static Config getInstance() throws FileNotFoundException {
+		 if (config_instance == null) 
+			 config_instance  = new Config(); 
+	  
+	        return config_instance ; 
+	}
+	
+    public void setRootDir(String rd) throws InvalidPathException, IOException {
+    	File dir = new File(rd);
+		if(! dir.isDirectory()) {
+			throw new InvalidPathException();
+		}
+    	this.rootDir = rd;
+    	rw.updateRootDir(rd);
+    }
+       
+	public String getRootDir() throws IOException {
+		if(this.rootDir==null) {
+			this.rootDir=rw.readRootDir();
+			System.out.println("root dir is "+this.rootDir);
+		}
 		
+		return this.rootDir;
 	}
 	
-	public Config() {
-		
+	public void setPort(String port) throws IOException {
+    	this.port = port;
+    	rw.updatePort(port);
 	}
 	
-	public boolean loadConfiguration(String configFile) {
-		return false;
+	public String getPort() throws IOException {
+		if (this.port==null) {
+			this.port=rw.readPort();
+			System.out.println("port is: "+ this.port);
+		}
+		return this.port;
 	}
 	
-	public boolean saveConfiguration(String configFile) {
-		return false;
+	public void setState(String state) throws IOException {
+		this.state = state;
+    	rw.updateState(state);
 	}
 	
-	public void makeDefaultConfig() {
-	
-	}
-	
-	public boolean setRootDir(String dir) {
-		return false;
-	}
-	
-	public boolean setMaintainanceDir() {
-		return false;
-	}
-	
-	public boolean setPort(String dir) {
-		return false;
-	}
-	
-	public boolean setState() {
-		return false;
-	}
-	
-	public String getRootDir() {
-		return null;
-	}
-	
-	public String getMaintainanceDir() {
-		return null;
-	}
-	
-	public String getPort() {
-		return null;
-	}
-	
-	public String getState() {
-		return null;
+	public String getState() throws IOException {
+		if (this.state==null) {
+			this.state=rw.readState();
+			System.out.println("state is: "+ this.state);
+		}
+		return this.state;
 	}
 	
 }

@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import config.Check;
+import config.Properties;
 import exceptions.InvalidPortNumberException;
 
-public class CheckTest {
+public class PropertiesTest {
 	
-	Check check = new Check();
+	Properties check = new Properties();
 
 	@Test(expected = InvalidPortNumberException.class)
 	public void testInvalid() {
