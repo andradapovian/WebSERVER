@@ -23,5 +23,12 @@ public class Utils {
 		return false;
 	}
 	
+	static public boolean validateState(String state) {
+		if(state.equals("running") || state.equals("maintenance") || state.equals("stopped")) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 }

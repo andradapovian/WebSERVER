@@ -64,5 +64,35 @@ public class UtilsTest {
 	public void testValidatePortFalse3() {
 		Utils.validatePort("dkfbms");
 	}
+	
+	@Test
+	public void testValidateState1() {
+		assertEquals(true, Utils.validateState("running"));
+	}
+	
+	@Test
+	public void testValidateState2() {
+		assertEquals(true, Utils.validateState("maintenance"));
+	}
+	
+	@Test
+	public void testValidateState3() {
+		assertEquals(true, Utils.validateState("stopped"));
+	}
+	
+	@Test
+	public void testValidateState4() {
+		assertEquals(false, Utils.validateState("maintanance"));
+	}
+	
+	@Test
+	public void testValidateState5() {
+		assertEquals(false, Utils.validateState("395280"));
+	}
+	
+	@Test
+	public void testValidateState6() {
+		assertEquals(false, Utils.validateState("run"));
+	}
 
 }

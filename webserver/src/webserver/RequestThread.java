@@ -37,10 +37,10 @@ public class RequestThread extends Thread {
             BufferedOutputStream out = new BufferedOutputStream(_socket.getOutputStream());
                         String request = in.readLine();
             
-//            if(SimpleWebServer.state.equals("maintenance")) {
-//            	sendError(out, 503, "Server in maintenance.");
-//                return;
-//            }
+            if(SimpleWebServer.state != null && SimpleWebServer.state.equals("maintenance")) {
+            	sendError(out, 503, "Server in maintenance.");
+                return;
+            }
 //            
             if (request == null || !request.startsWith("GET ") || !(request.endsWith(" HTTP/1.0") || request.endsWith("HTTP/1.1"))) {
                 // invalid request  

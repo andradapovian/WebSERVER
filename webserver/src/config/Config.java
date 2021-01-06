@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import exceptions.InvalidPathException;
 import exceptions.InvalidPortNumberException;
+import exceptions.InvalidStateException;
 import file.PropertiesFileReadWrite;
 
 
@@ -31,6 +32,10 @@ public class Config {
 	
 	public void setPropFileName(String str) {
 		rw.setPropFileName(str);
+	}
+	
+	public String getPropFileName() {
+		return rw.getPropFileName();
 	}
 	
     public void setRootDir(String rd) throws InvalidPathException, IOException {
@@ -66,9 +71,11 @@ public class Config {
 		return this.port;
 	}
 	
-	public void setState(String state) throws IOException {
+	public void setState(String state) throws IOException, InvalidStateException {
 		this.state = state;
-    	rw.updateFile("state",state);
+		if(Utils.validateState(state))
+			rw.updateFile("state",state);
+		else throw new InvalidStateException();
 	}
 	
 	public String getState() throws IOException {
