@@ -39,12 +39,12 @@ public class Config {
 			throw new InvalidPathException();
 		}
     	this.rootDir = rd;
-    	rw.updateRootDir(rd);
+    	rw.updateFile("rootDir",rd);
     }
        
 	public String getRootDir() throws IOException {
 		if(this.rootDir==null) {
-			this.rootDir=rw.readRootDir();
+			this.rootDir=rw.readFromFile("rootDir");
 			System.out.println("root dir is "+this.rootDir);
 		}
 		
@@ -54,13 +54,13 @@ public class Config {
 	public void setPort(String port) throws Exception {
     	this.port = port;
     	if(Utils.validatePort(port))
-    		rw.updatePort(port);
+    		rw.updateFile("port", port);
     	else throw new InvalidPortNumberException();
 	}
 	
 	public String getPort() throws IOException {
 		if (this.port==null) {
-			this.port=rw.readPort();
+			this.port=rw.readFromFile("port");
 			System.out.println("port is: "+ this.port);
 		}
 		return this.port;
@@ -68,12 +68,12 @@ public class Config {
 	
 	public void setState(String state) throws IOException {
 		this.state = state;
-    	rw.updateState(state);
+    	rw.updateFile("state",state);
 	}
 	
 	public String getState() throws IOException {
 		if (this.state==null) {
-			this.state=rw.readState();
+			this.state=rw.readFromFile("state");
 			System.out.println("state is: "+ this.state);
 		}
 		return this.state;
