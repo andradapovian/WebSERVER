@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import exceptions.InvalidPathException;
+import exceptions.InvalidPortNumberException;
 import file.PropertiesFileReadWrite;
 
 
@@ -28,6 +29,10 @@ public class Config {
 	        return config_instance ; 
 	}
 	
+	public void setPropFileName(String str) {
+		rw.setPropFileName(str);
+	}
+	
     public void setRootDir(String rd) throws InvalidPathException, IOException {
     	File dir = new File(rd);
 		if(! dir.isDirectory()) {
@@ -46,9 +51,11 @@ public class Config {
 		return this.rootDir;
 	}
 	
-	public void setPort(String port) throws IOException {
+	public void setPort(String port) throws Exception {
     	this.port = port;
-    	rw.updatePort(port);
+    	if(Utils.validatePort(port))
+    		rw.updatePort(port);
+    	else throw new InvalidPortNumberException();
 	}
 	
 	public String getPort() throws IOException {

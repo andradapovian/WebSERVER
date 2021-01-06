@@ -11,11 +11,29 @@ import java.util.Date;
 import java.util.Properties;
 
 public class PropertiesFileReadWrite {
-	private String result = new String();
 	private Properties prop = new Properties();
 	private String propFileName = "resources/webserver.properties";
 	
 	public PropertiesFileReadWrite() {}
+	
+	public void setPropFileName(String propFile) {
+		propFileName = propFile;
+	}
+	
+	public String readFromFile(String str) throws IOException {
+		FileInputStream inputStream = new FileInputStream(propFileName);
+		prop.load(inputStream);
+		String res = prop.getProperty(str);
+		inputStream.close();
+		return res;
+	}
+	
+	public void updateFile(String propName, String rd) throws IOException{
+		FileOutputStream out = new FileOutputStream(propFileName);
+		prop.setProperty(propName, rd);
+		prop.store(out, " last modified rootDir");
+		out.close();
+	}
 	
 	public String readRootDir() throws IOException {
 		FileInputStream inputStream = new FileInputStream(propFileName);

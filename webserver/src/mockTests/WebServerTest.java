@@ -1,4 +1,4 @@
-package tests;
+package mockTests;
 
 import static org.junit.Assert.*;
 

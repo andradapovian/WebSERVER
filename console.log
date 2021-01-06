@@ -1,0 +1,2 @@
+Error: Could not find or load main class src.gui.Gui
+Picked up JAVA_TOOL_OPTIONS: -DkeepLog=false -Dmarathon.launch.mode=javacommand -Dmarathon.mode=playing -javaagent:"C:\Facultate\Y4S1\SVV\marathon-5.4.0.0\marathon-5.4.0.0\marathon-java-agent-5.4.0.0.jar"=56900 -Djava.util.logging.config.file="C:\Facultate\Y4S1\SVV\webserver\logging.properties" -Dmarathon.project.dir="C:\Facultate\Y4S1\SVV\webserver"
