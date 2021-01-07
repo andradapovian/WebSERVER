@@ -19,6 +19,10 @@ public class WebServerTest {
 //		Assert.assertTrue("title should start differently", driver.getTitle().startsWith("Selenium Simplified"));
 //		driver.close();
 		driver.get("http://localhost:8080/");
+		System.out.println("Page title is: " + driver.getTitle());
+		WebElement firstLink = driver.findElement(By.linkText("do external links work?"));
+		firstLink.click();
+		System.out.println("Page title is: " + driver.getTitle());
 //		WebElement element = driver.findElement(By.name("q"));
 //
 //        // Enter something to search for
@@ -28,7 +32,7 @@ public class WebServerTest {
 //        element.submit();
 //
 //        // Check the title of the page
-//        System.out.println("Page title is: " + driver.getTitle());
+        System.out.println("Page title is: " + driver.getTitle());
 //        
 //        // Google's search is rendered dynamically with JavaScript.
 //        // Wait for the page to load, timeout after 10 seconds
