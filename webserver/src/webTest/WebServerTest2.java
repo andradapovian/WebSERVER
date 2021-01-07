@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class WebServerTest2 {
 	
 	@BeforeClass
-	public void setup() {
+	public static void setup() {
 		System.setProperty("webdriver.gecko.driver","C:/Users/andra/Downloads/geckodriver-v0.28.0-win64/geckodriver.exe"); 
 		
 	}
